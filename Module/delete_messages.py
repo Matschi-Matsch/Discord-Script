@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-# 🔒 Hier deine erlaubten Rollen eintragen
+# 🔒 Enter your permitted roles here
 ALLOWED_ROLE_IDS = [
     Your Role ID,  # Rolle 1
     Your Role ID   # Rolle 2
@@ -15,7 +15,6 @@ class DeleteMessages(commands.Cog):
     @commands.command(name="delete")
     async def delete_messages(self, ctx, amount: int):
 
-        # Prüfen ob User eine erlaubte Rolle hat
         user_role_ids = [role.id for role in ctx.author.roles]
         if not any(role_id in ALLOWED_ROLE_IDS for role_id in user_role_ids):
             await ctx.send("You are not allowed to use this command.", delete_after=5)
@@ -25,11 +24,9 @@ class DeleteMessages(commands.Cog):
             await ctx.send("Please enter a number greater than 0.", delete_after=5)
             return
 
-        # Max 100 Nachrichten (Discord Limit)
         if amount > 100:
             amount = 100
 
-        # +1 damit der Befehl selbst gelöscht wird
         deleted = await ctx.channel.purge(limit=amount + 1)
 
         confirmation = await ctx.send(f"Deleted {len(deleted)-1} messages.")
