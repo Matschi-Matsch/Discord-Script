@@ -68,14 +68,12 @@ class MinecraftStatus(commands.Cog):
                 color=discord.Color.red()
             )
 
-        # 🔎 Prüfen ob Nachricht schon existiert
         async for message in channel.history(limit=20):
             if message.author == self.bot.user and message.embeds:
                 if message.embeds[0].title.startswith(SERVER_NAME):
                     await message.edit(embed=embed, view=CopyIPButton())
                     return
 
-        # Wenn keine existiert → neu senden
         await channel.send(embed=embed, view=CopyIPButton())
 
 
