@@ -85,7 +85,7 @@ You are free to modify and extend the code.
 
 Here's my Discord server if you need help with the script:
 
-https://discord.gg/Dtzv34ZneK
+https://discord.gg/axYP8PZuc4
 ---
 
 
